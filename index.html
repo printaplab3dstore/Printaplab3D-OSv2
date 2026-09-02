@@ -1848,6 +1848,31 @@
                                 </a>
                             </div>
                         </div>
+
+                        <!-- Slide 4: Limber de Coco + Taza Moka -->
+                        <div class="carousel-slide" onclick="window.open('https://cults3d.com/es/modelo-3d/casa/limber-de-coco-taza-moka-boricua-con-patitas-articuladas-combo-para-impre', '_blank')">
+                            <div class="slide-image-container">
+                                <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/limber.jpg" 
+                                     alt="Limber de Coco y Taza Moka Boricua con Patitas Articuladas" 
+                                     class="slide-image"
+                                     loading="lazy">
+                            </div>
+                            <div class="slide-content">
+                                <h3 class="slide-title">☕🥥 Limber de Coco + Taza Moka</h3>
+                                <p class="slide-description">
+                                    Combo boricua con un clásico limber de coco y una taza moka, ambos con patitas articuladas impresas en una sola pieza. Sin soportes, ideal para decorar o regalar a quien lleve a Puerto Rico en el corazón.
+                                </p>
+                                <a href="https://cults3d.com/es/modelo-3d/casa/limber-de-coco-taza-moka-boricua-con-patitas-articuladas-combo-para-impre" 
+                                   target="_blank" 
+                                   class="slide-cta"
+                                   onclick="event.stopPropagation()">
+                                    Ver Modelo
+                                    <svg class="slide-cta-icon" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1862,6 +1887,7 @@
                         <div class="indicator active" onclick="goToSlide(0)"></div>
                         <div class="indicator" onclick="goToSlide(1)"></div>
                         <div class="indicator" onclick="goToSlide(2)"></div>
+                        <div class="indicator" onclick="goToSlide(3)"></div>
                     </div>
 
                     <button class="carousel-btn" id="nextBtn" onclick="nextSlide()" aria-label="Siguiente slide">
@@ -2057,7 +2083,7 @@
         
         // Variables del carrusel
         let currentSlide = 0;
-        let totalSlides = 3;
+        let totalSlides = 4;
         let autoplayInterval;
         let isAutoplayActive = true;
         
