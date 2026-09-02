@@ -574,244 +574,127 @@
                 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
-        /* CARRUSEL TECNOLÓGICO */
-        .carousel-section {
+        /* CATÁLOGO EN CUADRÍCULA */
+        .catalog-section {
             width: 100%;
             max-width: 1200px;
             margin: 60px 0;
-            animation: fadeInUp 1s ease-out 1.4s both;
         }
 
-        .carousel-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 40px;
-            background: linear-gradient(45deg, #00b4ff, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(0,180,255, 0.3);
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 26px;
         }
 
-        .carousel-container {
+        .catalog-card {
             position: relative;
             background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            border-radius: 30px;
-            padding: 40px;
+            backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .carousel-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #00b4ff, #a855f7, #ff6a00, #00e5cc);
-            border-radius: 30px;
-            z-index: -1;
-            animation: borderGlow 4s linear infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-        }
-
-        .carousel-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            position: relative;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
+            border-radius: 22px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease, border-color 0.35s ease;
         }
 
-        .carousel-slide:hover {
-            transform: scale(1.02);
+        .catalog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+            border-color: rgba(0, 180, 255, 0.4);
         }
 
-        .slide-image-container {
+        .catalog-card-image {
             width: 100%;
+            aspect-ratio: 4 / 3;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.25);
+            overflow: hidden;
         }
 
-        .slide-image {
-            max-width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            transition: all 0.6s ease;
-            border-radius: 10px;
+        .catalog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.6s ease;
+            background: linear-gradient(45deg, var(--glass-bg), rgba(0, 255, 255, 0.1));
+            background-size: 200% 200%;
+            animation: shimmer 2s infinite;
         }
 
-        .carousel-slide:hover .slide-image {
-            transform: scale(1.05);
-            filter: brightness(1.1);
+        .catalog-card-image img.loaded {
+            animation: none;
         }
 
-        .slide-content {
-            padding: 30px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+        .catalog-card:hover .catalog-card-image img {
+            transform: scale(1.08);
+            filter: brightness(1.08);
         }
 
-        .slide-title {
+        .catalog-card-body {
+            padding: 22px 24px 26px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .catalog-card-title {
             font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #00b4ff;
             margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0,180,255, 0.35);
+            text-shadow: 0 0 15px rgba(0,180,255, 0.3);
         }
 
-        .slide-description {
-            color: #cbd5e1;
-            font-size: 1rem;
-            line-height: 1.5;
+        .catalog-card-desc {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.55;
             margin-bottom: 20px;
+            flex: 1;
         }
 
-        .slide-cta {
+        .catalog-card-cta {
             display: inline-flex;
             align-items: center;
-            padding: 12px 25px;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
             background: linear-gradient(135deg, #0ea5e9, #0369a1);
             color: #ffffff;
             text-decoration: none;
             border-radius: 25px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            align-self: flex-start;
         }
 
-        .slide-cta:hover {
+        .catalog-card-cta:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(14, 165, 233, 0.4);
         }
 
-        .slide-cta-icon {
-            width: 18px;
-            height: 18px;
-            margin-left: 8px;
+        .catalog-card-cta svg {
+            width: 16px;
+            height: 16px;
             transition: transform 0.3s ease;
         }
 
-        .slide-cta:hover .slide-cta-icon {
-            transform: translateX(5px);
+        .catalog-card-cta:hover svg {
+            transform: translateX(4px);
         }
 
-        /* Controles del carrusel */
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .carousel-btn {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-primary);
-        }
-
-        .carousel-btn:hover {
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 255, 255, 0.1);
-        }
-
-        .carousel-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            gap: 10px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--glass-border);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .indicator:hover {
-            transform: scale(1.2);
-        }
-
-        /* Auto-play indicator */
-        .autoplay-indicator {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 8px 15px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .autoplay-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent-green);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+        @keyframes shimmer {
+            0% { background-position: -200% -200%; }
+            100% { background-position: 200% 200%; }
         }
 
         /* Calculadora mejorada */
@@ -1213,21 +1096,8 @@
                 align-items: center;
             }
 
-            .carousel-container {
-                padding: 20px;
-            }
-
-            .slide-image {
-                max-height: 300px;
-            }
-
-            .carousel-controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .slide-content {
-                padding: 20px;
+            .catalog-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1253,22 +1123,6 @@
         *:focus-visible {
             outline: 2px solid var(--accent-cyan);
             outline-offset: 2px;
-        }
-
-        /* Efectos de carga para imágenes */
-        .slide-image {
-            background: linear-gradient(45deg, var(--glass-bg), rgba(0, 255, 255, 0.1));
-            background-size: 200% 200%;
-            animation: shimmer 2s infinite;
-        }
-
-        .slide-image.loaded {
-            animation: none;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% -200%; }
-            100% { background-position: 200% 200%; }
         }
 
         /* ===================================================
@@ -1534,8 +1388,8 @@
             margin-bottom: 0 !important;
         }
 
-        /* Quitar margen extra del carousel y calculator para el nuevo layout */
-        .carousel-section {
+        /* Quitar margen extra del catálogo y calculator para el nuevo layout */
+        .catalog-section {
             margin-top: 0;
         }
 
@@ -1726,22 +1580,7 @@
         <!-- ===== SECCIÓN: HERRAMIENTAS DIGITALES ===== -->
         <section class="page-section" id="tools">
             <div class="section-label">🛠️ Herramientas Digitales</div>
-            <div class="tools-grid">
-
-                <!-- Card: Funkos -->
-                <div class="tool-card">
-                    <div class="tool-card-emoji">🎭</div>
-                    <div class="tool-card-title">Funkos 3D</div>
-                    <p class="tool-card-desc">Crea y personaliza tu Funko Pop 3D único con nuestro diseñador interactivo</p>
-                    <div class="special-button-container">
-                        <a href="https://printaplab3dstore.github.io/funkos.html" target="_blank" class="special-button" aria-label="Ver Funkos Personalizados">
-                            <svg class="special-button-icon" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6L12 10.5 8.5 8 12 5.5 15.5 8zM8.5 16L12 13.5 15.5 16 12 18.5 8.5 16z"/>
-                            </svg>
-                            Funkos Personalizados
-                        </a>
-                    </div>
-                </div>
+            <div class="tools-grid" style="grid-template-columns: minmax(280px, 380px); justify-content: center;">
 
                 <!-- Card: Generador de Huecos -->
                 <div class="tool-card">
@@ -1761,141 +1600,105 @@
             </div>
         </section>
 
-        <!-- CARRUSEL TECNOLÓGICO -->
-        <section class="carousel-section" id="catalogo">
+        <!-- CATÁLOGO EN CUADRÍCULA -->
+        <section class="catalog-section" id="catalogo">
             <div class="section-label">🚀 Catálogo Destacado</div>
-            <h2 class="carousel-title">NUESTROS MEJORES DISEÑOS</h2>
-            
-            <div class="carousel-container">
-                <div class="autoplay-indicator">
-                    <div class="autoplay-dot"></div>
-                    <span>Auto-play activo</span>
-                </div>
 
-                <div class="carousel-wrapper">
-                    <div class="carousel-track" id="carouselTrack">
-                        <!-- Slide 1: Limber de Coco + Taza Moka -->
-                        <div class="carousel-slide" onclick="window.open('https://cults3d.com/es/modelo-3d/casa/limber-de-coco-taza-moka-boricua-con-patitas-articuladas-combo-para-impre', '_blank')">
-                            <div class="slide-image-container">
-                                <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/limber.jpg" 
-                                     alt="Limber de Coco y Taza Moka Boricua con Patitas Articuladas" 
-                                     class="slide-image"
-                                     loading="lazy">
-                            </div>
-                            <div class="slide-content">
-                                <h3 class="slide-title">☕🥥 Limber de Coco + Taza Moka</h3>
-                                <p class="slide-description">
-                                    Combo boricua con un clásico limber de coco y una taza moka, ambos con patitas articuladas impresas en una sola pieza. Sin soportes, ideal para decorar o regalar a quien lleve a Puerto Rico en el corazón.
-                                </p>
-                                <a href="https://cults3d.com/es/modelo-3d/casa/limber-de-coco-taza-moka-boricua-con-patitas-articuladas-combo-para-impre" 
-                                   target="_blank" 
-                                   class="slide-cta"
-                                   onclick="event.stopPropagation()">
-                                    Ver Modelo
-                                    <svg class="slide-cta-icon" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Slide 2: Pack Coquí -->
-                        <div class="carousel-slide" onclick="window.open('https://cults3d.com/es/modelo-3d/variado/pack-coqui-macho-y-hembra-figuras-articuladas-en-3d', '_blank')">
-                            <div class="slide-image-container">
-                                <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/arte-funcional.jpg" 
-                                     alt="Pack Coquí Macho y Hembra - Figuras Articuladas 3D" 
-                                     class="slide-image"
-                                     loading="lazy">
-                            </div>
-                            <div class="slide-content">
-                                <h3 class="slide-title">🐸 Pack Coquí Articulado</h3>
-                                <p class="slide-description">
-                                    Figuras articuladas del emblemático coquí puertorriqueño. Diseño único con articulaciones funcionales, perfecto para coleccionistas y amantes de la cultura boricua.
-                                </p>
-                                <a href="https://cults3d.com/es/modelo-3d/variado/pack-coqui-macho-y-hembra-figuras-articuladas-en-3d" 
-                                   target="_blank" 
-                                   class="slide-cta"
-                                   onclick="event.stopPropagation()">
-                                    Ver Modelo
-                                    <svg class="slide-cta-icon" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Slide 3: Combo Cocina Boricua -->
-                        <div class="carousel-slide" onclick="window.open('https://cults3d.com/es/modelo-3d/variado/combo-cocina-boricua-con-patitas-cafetera-italiana-olla-arrocera', '_blank')">
-                            <div class="slide-image-container">
-                                <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/combo-cocina.jpg" 
-                                     alt="Combo Cocina Boricua - Cafetera y Olla Arrocera con Patitas" 
-                                     class="slide-image"
-                                     loading="lazy">
-                            </div>
-                            <div class="slide-content">
-                                <h3 class="slide-title">🍚 Combo Cocina Boricua</h3>
-                                <p class="slide-description">
-                                    Set completo de cocina tradicional puertorriqueña: cafetera italiana y olla arrocera con patitas. Diseños funcionales que celebran nuestra herencia culinaria.
-                                </p>
-                                <a href="https://cults3d.com/es/modelo-3d/variado/combo-cocina-boricua-con-patitas-cafetera-italiana-olla-arrocera" 
-                                   target="_blank" 
-                                   class="slide-cta"
-                                   onclick="event.stopPropagation()">
-                                    Ver Modelo
-                                    <svg class="slide-cta-icon" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Slide 4: Lámpara Coquí -->
-                        <div class="carousel-slide" onclick="window.open('https://cults3d.com/es/modelo-3d/variado/lampara-garita-diseno-articulado-coqui-sin-soportes', '_blank')">
-                            <div class="slide-image-container">
-                                <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/coqui-lampara.jpg" 
-                                     alt="Lámpara Coquí Puertorriqueño - Diseño Articulado sin Soportes" 
-                                     class="slide-image"
-                                     loading="lazy">
-                            </div>
-                            <div class="slide-content">
-                                <h3 class="slide-title">💡 Lámpara Coquí LED</h3>
-                                <p class="slide-description">
-                                    Lámpara decorativa del coquí puertorriqueño con diseño articulado. Impresión sin soportes, perfecta para iluminar cualquier espacio con estilo boricua.
-                                </p>
-                                <a href="https://cults3d.com/es/modelo-3d/variado/lampara-garita-diseno-articulado-coqui-sin-soportes" 
-                                   target="_blank" 
-                                   class="slide-cta"
-                                   onclick="event.stopPropagation()">
-                                    Ver Modelo
-                                    <svg class="slide-cta-icon" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
+            <div class="catalog-grid">
+                <!-- Limber de Coco + Taza Moka -->
+                <div class="catalog-card" onclick="window.open('https://cults3d.com/es/modelo-3d/casa/limber-de-coco-taza-moka-boricua-con-patitas-articuladas-combo-para-impre', '_blank')">
+                    <div class="catalog-card-image">
+                        <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/limber.jpg" 
+                             alt="Limber de Coco y Taza Moka Boricua con Patitas Articuladas" 
+                             loading="lazy">
+                    </div>
+                    <div class="catalog-card-body">
+                        <h3 class="catalog-card-title">☕🥥 Limber de Coco + Taza Moka</h3>
+                        <p class="catalog-card-desc">
+                            Combo boricua con un clásico limber de coco y una taza moka, ambos con patitas articuladas impresas en una sola pieza. Sin soportes.
+                        </p>
+                        <a href="https://cults3d.com/es/modelo-3d/casa/limber-de-coco-taza-moka-boricua-con-patitas-articuladas-combo-para-impre" 
+                           target="_blank" 
+                           class="catalog-card-cta"
+                           onclick="event.stopPropagation()">
+                            Ver Modelo
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="prevBtn" onclick="previousSlide()" aria-label="Slide anterior">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                        </svg>
-                    </button>
-
-                    <div class="carousel-indicators" id="indicators">
-                        <div class="indicator active" onclick="goToSlide(0)"></div>
-                        <div class="indicator" onclick="goToSlide(1)"></div>
-                        <div class="indicator" onclick="goToSlide(2)"></div>
-                        <div class="indicator" onclick="goToSlide(3)"></div>
+                <!-- Pack Coquí -->
+                <div class="catalog-card" onclick="window.open('https://cults3d.com/es/modelo-3d/variado/pack-coqui-macho-y-hembra-figuras-articuladas-en-3d', '_blank')">
+                    <div class="catalog-card-image">
+                        <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/arte-funcional.jpg" 
+                             alt="Pack Coquí Macho y Hembra - Figuras Articuladas 3D" 
+                             loading="lazy">
                     </div>
+                    <div class="catalog-card-body">
+                        <h3 class="catalog-card-title">🐸 Pack Coquí Articulado</h3>
+                        <p class="catalog-card-desc">
+                            Figuras articuladas del emblemático coquí puertorriqueño. Diseño único con articulaciones funcionales, perfecto para coleccionistas.
+                        </p>
+                        <a href="https://cults3d.com/es/modelo-3d/variado/pack-coqui-macho-y-hembra-figuras-articuladas-en-3d" 
+                           target="_blank" 
+                           class="catalog-card-cta"
+                           onclick="event.stopPropagation()">
+                            Ver Modelo
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
 
-                    <button class="carousel-btn" id="nextBtn" onclick="nextSlide()" aria-label="Siguiente slide">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                        </svg>
-                    </button>
+                <!-- Combo Cocina Boricua -->
+                <div class="catalog-card" onclick="window.open('https://cults3d.com/es/modelo-3d/variado/combo-cocina-boricua-con-patitas-cafetera-italiana-olla-arrocera', '_blank')">
+                    <div class="catalog-card-image">
+                        <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/combo-cocina.jpg" 
+                             alt="Combo Cocina Boricua - Cafetera y Olla Arrocera con Patitas" 
+                             loading="lazy">
+                    </div>
+                    <div class="catalog-card-body">
+                        <h3 class="catalog-card-title">🍚 Combo Cocina Boricua</h3>
+                        <p class="catalog-card-desc">
+                            Set completo de cocina tradicional puertorriqueña: cafetera italiana y olla arrocera con patitas. Diseños que celebran nuestra herencia culinaria.
+                        </p>
+                        <a href="https://cults3d.com/es/modelo-3d/variado/combo-cocina-boricua-con-patitas-cafetera-italiana-olla-arrocera" 
+                           target="_blank" 
+                           class="catalog-card-cta"
+                           onclick="event.stopPropagation()">
+                            Ver Modelo
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Lámpara Coquí -->
+                <div class="catalog-card" onclick="window.open('https://cults3d.com/es/modelo-3d/variado/lampara-garita-diseno-articulado-coqui-sin-soportes', '_blank')">
+                    <div class="catalog-card-image">
+                        <img src="https://raw.githubusercontent.com/printaplab3dstore/Stlmoldegenerador/main/img/coqui-lampara.jpg" 
+                             alt="Lámpara Coquí Puertorriqueño - Diseño Articulado sin Soportes" 
+                             loading="lazy">
+                    </div>
+                    <div class="catalog-card-body">
+                        <h3 class="catalog-card-title">💡 Lámpara Coquí LED</h3>
+                        <p class="catalog-card-desc">
+                            Lámpara decorativa del coquí puertorriqueño con diseño articulado. Impresión sin soportes, perfecta para iluminar cualquier espacio con estilo boricua.
+                        </p>
+                        <a href="https://cults3d.com/es/modelo-3d/variado/lampara-garita-diseno-articulado-coqui-sin-soportes" 
+                           target="_blank" 
+                           class="catalog-card-cta"
+                           onclick="event.stopPropagation()">
+                            Ver Modelo
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2082,12 +1885,6 @@
         let currentTheme = 'dark';
         let lastCalculation = null;
         
-        // Variables del carrusel
-        let currentSlide = 0;
-        let totalSlides = 4;
-        let autoplayInterval;
-        let isAutoplayActive = true;
-        
         // Información de monedas
         const currencyInfo = {
             'ARS': { symbol: '$', name: 'Peso Argentino' },
@@ -2108,7 +1905,6 @@
             setupFormValidation();
             loadSavedTheme();
             loadSavedConfiguration();
-            initializeCarousel();
             setupImageLoading();
         });
 
@@ -2219,22 +2015,9 @@
             });
         }
 
-        // FUNCIONES DEL CARRUSEL
-        function initializeCarousel() {
-            startAutoplay();
-            updateCarousel();
-            
-            // Pausar autoplay al hacer hover
-            const carouselContainer = document.querySelector('.carousel-container');
-            carouselContainer.addEventListener('mouseenter', pauseAutoplay);
-            carouselContainer.addEventListener('mouseleave', startAutoplay);
-            
-            // Soporte para gestos táctiles
-            setupTouchGestures();
-        }
-
+        // Carga de imágenes del catálogo
         function setupImageLoading() {
-            const images = document.querySelectorAll('.slide-image');
+            const images = document.querySelectorAll('.catalog-card-image img');
             images.forEach(img => {
                 img.addEventListener('load', function() {
                     this.classList.add('loaded');
@@ -2245,89 +2028,6 @@
                     this.classList.add('loaded');
                 });
             });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function previousSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const indicators = document.querySelectorAll('.indicator');
-            
-            // Actualizar posición del track
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            // Actualizar indicadores
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
-            
-            // Actualizar botones de navegación
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            prevBtn.disabled = false;
-            nextBtn.disabled = false;
-        }
-
-        function startAutoplay() {
-            if (isAutoplayActive) {
-                autoplayInterval = setInterval(() => {
-                    nextSlide();
-                }, 5000);
-            }
-        }
-
-        function pauseAutoplay() {
-            clearInterval(autoplayInterval);
-        }
-
-        function resetAutoplay() {
-            pauseAutoplay();
-            startAutoplay();
-        }
-
-        function setupTouchGestures() {
-            const carouselWrapper = document.querySelector('.carousel-wrapper');
-            let startX = 0;
-            let endX = 0;
-            
-            carouselWrapper.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-            });
-            
-            carouselWrapper.addEventListener('touchend', (e) => {
-                endX = e.changedTouches[0].clientX;
-                handleSwipe();
-            });
-            
-            function handleSwipe() {
-                const threshold = 50;
-                const diff = startX - endX;
-                
-                if (Math.abs(diff) > threshold) {
-                    if (diff > 0) {
-                        nextSlide();
-                    } else {
-                        previousSlide();
-                    }
-                }
-            }
         }
 
         // Toggle de tema
@@ -2345,9 +2045,6 @@
                 secCat:    '🚀 Catálogo Destacado',
                 secCalc:   '🧮 Calculadora FDM',
                 ctaModels: 'Ver Modelos 3D 🚀',
-                toolFunko:  'Funkos 3D',
-                toolFunkoDesc: 'Crea y personaliza tu Funko Pop 3D único con nuestro diseñador interactivo',
-                toolFunkoBtn:  'Funkos Personalizados',
                 toolHuecos:    'Generador de Huecos',
                 toolHuecosDesc:'Genera tolerancias y huecos precisos para ensambles FDM perfectos',
                 toolHuecosBtn: 'Generador de Huecos',
@@ -2364,9 +2061,6 @@
                 secCat:    '🚀 Featured Catalog',
                 secCalc:   '🧮 FDM Calculator',
                 ctaModels: 'View 3D Models 🚀',
-                toolFunko:  'Custom Funkos',
-                toolFunkoDesc: 'Create and personalize your own unique 3D Funko Pop with our interactive designer',
-                toolFunkoBtn:  'Personalized Funkos',
                 toolHuecos:    'Hole Generator',
                 toolHuecosDesc:'Generate precise tolerances and holes for perfect FDM assemblies',
                 toolHuecosBtn: 'Hole Generator',
@@ -2406,19 +2100,13 @@
                 if (spans.length === 0) ctaBtn.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = ' ' + t.ctaModels; });
             }
 
-            // Tool cards
+            // Tool card
             const cards = document.querySelectorAll('.tool-card');
             if (cards[0]) {
-                cards[0].querySelector('.tool-card-title').textContent = t.toolFunko;
-                cards[0].querySelector('.tool-card-desc').textContent  = t.toolFunkoDesc;
-                const btn0 = cards[0].querySelector('.special-button');
-                if (btn0) btn0.lastChild.textContent = ' ' + t.toolFunkoBtn;
-            }
-            if (cards[1]) {
-                cards[1].querySelector('.tool-card-title').textContent = t.toolHuecos;
-                cards[1].querySelector('.tool-card-desc').textContent  = t.toolHuecosDesc;
-                const btn1 = cards[1].querySelector('.huecos-button span');
-                if (btn1) btn1.textContent = t.toolHuecosBtn;
+                cards[0].querySelector('.tool-card-title').textContent = t.toolHuecos;
+                cards[0].querySelector('.tool-card-desc').textContent  = t.toolHuecosDesc;
+                const btn0 = cards[0].querySelector('.huecos-button span');
+                if (btn0) btn0.textContent = t.toolHuecosBtn;
             }
         }
 
@@ -2782,13 +2470,6 @@ www.printaplab3dstore.com
                 e.preventDefault();
                 calculateCost();
             }
-            
-            // Navegación del carrusel con teclado
-            if (e.key === 'ArrowLeft') {
-                previousSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
         });
 
         // Optimización de rendimiento — canvas maneja su propio resize
@@ -2810,7 +2491,7 @@ www.printaplab3dstore.com
 
         // Observar elementos para animaciones
         document.addEventListener('DOMContentLoaded', () => {
-            const elementsToAnimate = document.querySelectorAll('.carousel-section, .calculator-container');
+            const elementsToAnimate = document.querySelectorAll('.catalog-section, .calculator-container');
             elementsToAnimate.forEach(el => observer.observe(el));
         });
     </script>
