@@ -1305,105 +1305,6 @@
             }
         }
 
-        /* --- NUEVA HERRAMIENTA: AUTO SLICER --- */
-        .autoslicer-button-container {
-            width: 100%;
-            margin-bottom: 0 !important;
-            animation: fadeInUp 1s ease-out 1.4s both;
-        }
-
-        .autoslicer-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            box-sizing: border-box;
-            padding: 14px 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.9rem;
-            line-height: 1.25;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid rgba(255,255,255,0.35);
-            background: linear-gradient(135deg, #ff6a00 0%, #ff1493 48%, #8a2be2 100%);
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            position: relative;
-            overflow: hidden;
-            box-shadow:
-                0 0 22px rgba(255,106,0,0.45),
-                0 0 45px rgba(255,20,147,0.25),
-                0 8px 25px rgba(0,0,0,0.3);
-            animation: autoslicerGlow 2.4s ease-in-out infinite;
-        }
-
-        .autoslicer-button::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 50px;
-            background: linear-gradient(45deg, #ff6a00, #ff1493, #00d9ff, #8a2be2, #ff6a00);
-            background-size: 300% 300%;
-            z-index: -1;
-            animation: autoslicerBorder 3s linear infinite;
-            opacity: 0.9;
-        }
-
-        .autoslicer-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 80%;
-            height: 100%;
-            transform: skewX(-20deg);
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
-            transition: left 0.65s ease;
-        }
-
-        .autoslicer-button:hover::after {
-            left: 140%;
-        }
-
-        .autoslicer-button:hover {
-            transform: translateY(-7px) scale(1.04);
-            box-shadow:
-                0 0 38px rgba(255,106,0,0.7),
-                0 0 75px rgba(255,20,147,0.45),
-                0 18px 40px rgba(0,0,0,0.4);
-        }
-
-        .autoslicer-icon {
-            width: 27px;
-            height: 27px;
-            flex: 0 0 auto;
-            margin-right: 11px;
-            animation: autoslicerIcon 1.8s ease-in-out infinite;
-        }
-
-        @keyframes autoslicerGlow {
-            0%, 100% {
-                box-shadow: 0 0 22px rgba(255,106,0,0.45), 0 0 45px rgba(255,20,147,0.25), 0 8px 25px rgba(0,0,0,0.3);
-            }
-            50% {
-                box-shadow: 0 0 38px rgba(255,106,0,0.7), 0 0 70px rgba(255,20,147,0.4), 0 12px 32px rgba(0,0,0,0.35);
-            }
-        }
-
-        @keyframes autoslicerBorder {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes autoslicerIcon {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.12) rotate(3deg); }
-        }
-
         /* --- Herramientas: Cards lado a lado --- */
         .tools-grid {
             display: grid;
@@ -1679,7 +1580,7 @@
         <!-- ===== SECCIÓN: HERRAMIENTAS DIGITALES ===== -->
         <section class="page-section" id="tools">
             <div class="section-label">🛠️ Herramientas Digitales</div>
-            <div class="tools-grid">
+            <div class="tools-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 380px)); justify-content: center;">
 
                 <!-- Card: Generador de Huecos -->
                 <div class="tool-card">
@@ -1692,6 +1593,21 @@
                                 <path d="M12 2C7.58 2 4 5.58 4 10c0 2.12.91 4.08 2.36 5.47L6 22h12l-.36-6.53C19.09 14.08 20 12.12 20 10c0-4.42-3.58-8-8-8zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm-1-7h2v2h-2v-2zm1-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
                             </svg>
                             <span>Generador de Huecos</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card: Auto Slicer Bambú (Escalar y Cortar a Tamaño Real) -->
+                <div class="tool-card">
+                    <div class="tool-card-emoji">📐</div>
+                    <div class="tool-card-title">Escalar y Cortar a Tamaño Real</div>
+                    <p class="tool-card-desc">Escala y corta tus piezas al tamaño exacto para impresión en Bambú Lab</p>
+                    <div class="huecos-button-container">
+                        <a href="https://printaplab3dstore.github.io/auto-slicer-bambu.html" target="_blank" class="huecos-button" aria-label="Ir a Escalar y Cortar Piezas a Tamaño Real">
+                            <svg class="huecos-button-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+                            </svg>
+                            <span>Escalar y Cortar</span>
                         </a>
                     </div>
                 </div>
@@ -2147,6 +2063,9 @@
                 toolHuecos:    'Generador de Huecos',
                 toolHuecosDesc:'Genera tolerancias y huecos precisos para ensambles FDM perfectos',
                 toolHuecosBtn: 'Generador de Huecos',
+                toolSlicer:    'Escalar y Cortar a Tamaño Real',
+                toolSlicerDesc:'Escala y corta tus piezas al tamaño exacto para impresión en Bambú Lab',
+                toolSlicerBtn: 'Escalar y Cortar',
             },
             en: {
                 slogan:    'Organic 3D Design & Custom Modeling',
@@ -2163,6 +2082,9 @@
                 toolHuecos:    'Hole Generator',
                 toolHuecosDesc:'Generate precise tolerances and holes for perfect FDM assemblies',
                 toolHuecosBtn: 'Hole Generator',
+                toolSlicer:    'Scale & Cut to Real Size',
+                toolSlicerDesc:'Scale and cut your parts to the exact size for Bambu Lab printing',
+                toolSlicerBtn: 'Scale & Cut',
             }
         };
 
@@ -2206,6 +2128,12 @@
                 cards[0].querySelector('.tool-card-desc').textContent  = t.toolHuecosDesc;
                 const btn0 = cards[0].querySelector('.huecos-button span');
                 if (btn0) btn0.textContent = t.toolHuecosBtn;
+            }
+            if (cards[1]) {
+                cards[1].querySelector('.tool-card-title').textContent = t.toolSlicer;
+                cards[1].querySelector('.tool-card-desc').textContent  = t.toolSlicerDesc;
+                const btn1 = cards[1].querySelector('.huecos-button span');
+                if (btn1) btn1.textContent = t.toolSlicerBtn;
             }
         }
 
