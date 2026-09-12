@@ -1305,6 +1305,105 @@
             }
         }
 
+        /* --- NUEVA HERRAMIENTA: AUTO SLICER --- */
+        .autoslicer-button-container {
+            width: 100%;
+            margin-bottom: 0 !important;
+            animation: fadeInUp 1s ease-out 1.4s both;
+        }
+
+        .autoslicer-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.9rem;
+            line-height: 1.25;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255,255,255,0.35);
+            background: linear-gradient(135deg, #ff6a00 0%, #ff1493 48%, #8a2be2 100%);
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 0 22px rgba(255,106,0,0.45),
+                0 0 45px rgba(255,20,147,0.25),
+                0 8px 25px rgba(0,0,0,0.3);
+            animation: autoslicerGlow 2.4s ease-in-out infinite;
+        }
+
+        .autoslicer-button::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff6a00, #ff1493, #00d9ff, #8a2be2, #ff6a00);
+            background-size: 300% 300%;
+            z-index: -1;
+            animation: autoslicerBorder 3s linear infinite;
+            opacity: 0.9;
+        }
+
+        .autoslicer-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 80%;
+            height: 100%;
+            transform: skewX(-20deg);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+            transition: left 0.65s ease;
+        }
+
+        .autoslicer-button:hover::after {
+            left: 140%;
+        }
+
+        .autoslicer-button:hover {
+            transform: translateY(-7px) scale(1.04);
+            box-shadow:
+                0 0 38px rgba(255,106,0,0.7),
+                0 0 75px rgba(255,20,147,0.45),
+                0 18px 40px rgba(0,0,0,0.4);
+        }
+
+        .autoslicer-icon {
+            width: 27px;
+            height: 27px;
+            flex: 0 0 auto;
+            margin-right: 11px;
+            animation: autoslicerIcon 1.8s ease-in-out infinite;
+        }
+
+        @keyframes autoslicerGlow {
+            0%, 100% {
+                box-shadow: 0 0 22px rgba(255,106,0,0.45), 0 0 45px rgba(255,20,147,0.25), 0 8px 25px rgba(0,0,0,0.3);
+            }
+            50% {
+                box-shadow: 0 0 38px rgba(255,106,0,0.7), 0 0 70px rgba(255,20,147,0.4), 0 12px 32px rgba(0,0,0,0.35);
+            }
+        }
+
+        @keyframes autoslicerBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes autoslicerIcon {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.12) rotate(3deg); }
+        }
+
         /* --- Herramientas: Cards lado a lado --- */
         .tools-grid {
             display: grid;
@@ -1580,7 +1679,7 @@
         <!-- ===== SECCIÓN: HERRAMIENTAS DIGITALES ===== -->
         <section class="page-section" id="tools">
             <div class="section-label">🛠️ Herramientas Digitales</div>
-            <div class="tools-grid" style="grid-template-columns: minmax(280px, 380px); justify-content: center;">
+            <div class="tools-grid">
 
                 <!-- Card: Generador de Huecos -->
                 <div class="tool-card">
